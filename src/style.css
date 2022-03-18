@@ -1,0 +1,47 @@
+@import '~slick-carousel/slick/slick.css'; 
+@import '~slick-carousel/slick/slick-theme.css';
+
+:root {
+  --teste: -125vw;
+  --outra: 0vw;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  
+  transition: all 2s;
+  overflow: hidden;
+}
+
+.teste2 {
+  width: calc(70vw * 5);
+  display: flex;
+  gap: 50px;
+  transform: translateX(var(--teste));
+}
+
+.teste {
+  animation: slide 0.5s forwards;
+}
+
+@keyframes slide {
+  to {
+    transform: translateX(calc(var(--teste) - var(--outra)));
+  }
+}
+
+.App button {
+  position: fixed;
+  z-index: 1;
+}
+
+.slide {
+  width: 70vw;
+  border: 1px solid red;
+  padding: 10px;
+}
