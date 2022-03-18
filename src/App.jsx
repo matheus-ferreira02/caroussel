@@ -8,7 +8,7 @@ function App() {
 
   const prevState = () => {
     teste.current.classList.remove('teste');
-    setCurrentArray([ currentArray[4], currentArray[0], currentArray[1], currentArray[2], currentArray[3]])
+    setCurrentArray([currentArray[4], currentArray[0], currentArray[1], currentArray[2], currentArray[3]]);
   }
 
   const nextState = () => {
@@ -17,7 +17,7 @@ function App() {
   }
 
   const prevAnimation = () => {
-    teste.current.classList.add('teste');    
+    teste.current.classList.add('teste');  
     teste.current.style.setProperty('--outra', '-71.5vw');
     setCurrentAction('prev');
   }
