@@ -2,8 +2,11 @@
 @import '~slick-carousel/slick/slick-theme.css';
 
 :root {
-  --teste: -125vw;
+  --teste: -25vw;
+  --lengthArray: 0;
   --outra: 0vw;
+  --outroTest: 0;
+  --widthSlide: 93vw;
 }
 
 * {
@@ -13,16 +16,14 @@
 }
 
 .App {
-  
-  transition: all 2s;
   overflow: hidden;
+  margin-top: 40px;
 }
 
 .teste2 {
-  width: calc(70vw * 5);
+  width: calc(var(--widthSlide) * var(--lengthArray));
   display: flex;
-  gap: 50px;
-  transform: translateX(var(--teste));
+  transform: translateX(calc(calc(100vw - var(--widthSlide)) /2 + var(--widthSlide) * -2));
 }
 
 .teste {
@@ -31,7 +32,7 @@
 
 @keyframes slide {
   to {
-    transform: translateX(calc(var(--teste) - var(--outra)));
+    transform: translateX(calc(calc(100vw - var(--widthSlide)) /2 + var(--widthSlide) * -2 - var(--outra)));
   }
 }
 
@@ -41,7 +42,11 @@
 }
 
 .slide {
-  width: 70vw;
-  border: 1px solid red;
+  width: var(--widthSlide);
+  height: 310px;
+  background-color: rgb(0, 0, 0);
+  /* transform: scaleX(.95); */
+  margin: 0 10px;
+  color: white;
   padding: 10px;
 }
