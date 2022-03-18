@@ -2,11 +2,10 @@
 @import '~slick-carousel/slick/slick-theme.css';
 
 :root {
-  --teste: -25vw;
-  --lengthArray: 0;
-  --outra: 0vw;
-  --outroTest: 0;
-  --widthSlide: 93vw;
+  --lengthArray: 0; /* Tamanho do array */
+  --slide: 0vw; /* variavel q controla o translateX, tem q ser o */
+  --widthSlide: 0vw;  /* Tamanho do card */
+  --MarginLeftRigh: 0; /* Distancia dos elementos */
 }
 
 * {
@@ -20,19 +19,20 @@
   margin-top: 40px;
 }
 
-.teste2 {
+.cards_container {
   width: calc(var(--widthSlide) * var(--lengthArray));
   display: flex;
+  height: 310px;
   transform: translateX(calc(calc(100vw - var(--widthSlide)) /2 + var(--widthSlide) * -2));
 }
 
-.teste {
+.animationSlide {
   animation: slide 0.5s forwards;
 }
 
 @keyframes slide {
   to {
-    transform: translateX(calc(calc(100vw - var(--widthSlide)) /2 + var(--widthSlide) * -2 - var(--outra)));
+    transform: translateX(calc(calc(100vw - var(--widthSlide)) /2 + var(--widthSlide) * -2 - var(--slide)));
   }
 }
 
@@ -41,12 +41,22 @@
   z-index: 1;
 }
 
-.slide {
+.card {
   width: var(--widthSlide);
-  height: 310px;
-  background-color: rgb(0, 0, 0);
-  /* transform: scaleX(.95); */
-  margin: 0 10px;
+  height: 100%;
+  position: relative;
+  /* background-color: rgb(0, 0, 0); */
+  margin: 0 var(--MarginLeftRigh);
   color: white;
-  padding: 10px;
+  /* padding: 10px; */
+}
+
+.img_backGround {
+  width: 100%;
+  position: absolute;
+}
+
+.title {
+  position: relative;
+  z-index: 1;
 }
