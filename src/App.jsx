@@ -1,13 +1,12 @@
-import React, {useContext} from 'react';
-import Carrocel from './Carrocel';
+import React from 'react';
+import Carousel from './Carousel';
 import Card from './Card';
 
 function App() {
-  // console.log(conxtet)
   return (
-    <Carrocel>
-      <Card />
-    </Carrocel>
+     <Carousel>
+        <Card />
+     </Carousel>
   )
 }
 

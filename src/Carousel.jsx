@@ -3,18 +3,21 @@ import { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import MyProvider from './myContext';
 
-function Carrocel({widthSlide, array, marginLeftRigh, children}) {
+function Carousel({widthSlide, array, marginLeftRigh, children, scaleCard, heigthCarousel}) {
   const [currentArray, setCurrentArray] = useState(array);
   const cardsRef = useRef(HTMLDivElement);
   const { current: { classList, style } } = cardsRef;
   const [currentAction, setCurrentAction] = useState('');
+  // const [test, setTest]= useState(false);
 
   useEffect(() => { //muda variavei do css
     const { current: { style } } = cardsRef;
     style.setProperty('--lengthArray', currentArray.length)
     style.setProperty('--widthSlide', widthSlide)
     style.setProperty('--MarginLeftRigh', marginLeftRigh)
-  }, [currentArray.length, marginLeftRigh, widthSlide])
+    style.setProperty('--scaleCard', scaleCard)
+    style.setProperty('--heigthCarousel', heigthCarousel)
+  }, [currentArray.length, marginLeftRigh, widthSlide, scaleCard, heigthCarousel])
   
   useEffect(() => { //aumenta o array original para o tamanho minimo
     setCurrentArray((old) => old.length < 5
@@ -54,12 +57,17 @@ function Carrocel({widthSlide, array, marginLeftRigh, children}) {
   }
 
   return (
-    <div className="App">
-      <button onClick={ prevAnimation }>prev</button>
+    <div className="App" style={ { height: heigthCarousel }}>
+      <button onClick={ () => {
+        prevAnimation();
+      }}>
+       prev
+       </button>
       <div onAnimationEnd={ verify }
       ref={ cardsRef } className="cards_container">
         { currentArray.map((element, index) => (
           <div
+            onTouchMove={(e) => console.log(e)}
             key={ index }
             id={ index }
             className='card'
@@ -74,21 +82,28 @@ function Carrocel({widthSlide, array, marginLeftRigh, children}) {
       <button style={{
         right: '0',
       }}
-      onClick={ nextAnimation }
+      onClick={ () => {
+        nextAnimation();
+        // setAnimation(true); 
+      }}
       >Next</button>
     </div>
   )
 }
 
-Carrocel.propTypes = {
+Carousel.propTypes = {
   array: PropTypes.arrayOf(PropTypes.any),
   widthSlide: PropTypes.string,
   marginLeftRighL: PropTypes.string,
+  scaleCard: PropTypes.number,
+  heigthCarousel: PropTypes.string,
 }
 
-Carrocel.defaultProps = {
+Carousel.defaultProps = {
   widthSlide: '80vw',
   marginLeftRigh: '20px',
+  scaleCard: 1,
+  heigthCarousel: '500px',
   array:[
           {img: 'https://images7.alphacoders.com/381/thumb-1920-381091.png', title: 'Draven'},
           {img: 'https://3.bp.blogspot.com/-oXdBvSQrtvI/XT0JpIKvIOI/AAAAAAAAJ80/SJTXF7wViiQG9R-CDnzBmlNR0OBGCjlMgCLcBGAs/w919/riven-lol-dawnbringer-splash-art-uhdpaper.com-4K-444-wp.thumbnail.jpg', title: 'Riven'},
@@ -96,4 +111,4 @@ Carrocel.defaultProps = {
         ],
 }
 
-export default Carrocel;
+export default Carousel;
